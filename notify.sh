@@ -40,7 +40,7 @@ function bark()
 
     cat>/data/${imagename}_bark<<EOF
 {
-    "title": "${imagename3} 更新啦~",
+    "title": "${imagename3} 更新啦 💬",
     "body": "镜像：${imagename2}\n时间：${DIUN_ENTRY_CREATED111}\n平台：${DIUN_ENTRY_PLATFORM111}\n",
     "device_key": "${BARK_KEY}",
     "badge": 1,
@@ -67,7 +67,7 @@ function qywx()
    "news" : {
        "articles":[
            {
-               "title": "${imagename3} 更新啦~",
+               "title": "${imagename3} 更新啦 💬",
                "description": "镜　　像：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
                "url": "${DIUN_ENTRY_HUBLINK111}"
             }
@@ -94,7 +94,7 @@ function qywxurl()
    "news" : {
        "articles":[
            {
-               "title": "${imagename3} 更新啦~",
+               "title": "${imagename3} 更新啦 💬",
                "picurl": "${MEDIA_ID}",
                "description": "镜　　像：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
                "url": "${DIUN_ENTRY_HUBLINK111}"
@@ -122,7 +122,7 @@ function qywxmediaid()
    "mpnews" : {
        "articles":[
            {
-               "title": "${imagename3} 更新啦~",
+               "title": "${imagename3} 更新啦 💬",
                "thumb_media_id": "${MEDIA_ID}",
                "content": "镜　　像：${imagename2}<br/>更新时间：${DIUN_ENTRY_CREATED111}<br/>平　　台：${DIUN_ENTRY_PLATFORM111}\n",
                "digest": "镜　　像：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
@@ -146,7 +146,7 @@ function telegram()
 {
     "chat_id": "${TG_CHAT_ID}",
     "parse_mode":"Markdown",
-    "text": "*${imagename3} 更新啦~*\n\n*镜　　像：* ${imagename2}\n*地　　址：* ${DIUN_ENTRY_HUBLINK111}\n*更新时间：* ${DIUN_ENTRY_CREATED111}\n*平　　台：* ${DIUN_ENTRY_PLATFORM111}\n"
+    "text": "*${imagename3} 更新啦 💬*\n\n*镜　　像：* ${imagename2}\n*地　　址：* ${DIUN_ENTRY_HUBLINK111}\n*更新时间：* ${DIUN_ENTRY_CREATED111}\n*平　　台：* ${DIUN_ENTRY_PLATFORM111}\n"
 }
 EOF
     /data/tools/curl --location --request POST ${TG_URL} --header 'Content-Type: application/json' -d @/data/${imagename}_tg
@@ -182,7 +182,7 @@ function discord()
             "value": "${DIUN_ENTRY_PLATFORM111}"
           }
         ],
-        "title": "${imagename3} 更新啦~",
+        "title": "${imagename3} 更新啦 💬",
         "description": "",
         "footer": {
           "text": "推送时间",
@@ -197,7 +197,6 @@ EOF
     /data/tools/curl --location --request POST ${DISCORD_URL} --header 'Content-Type: application/json' -d @/data/${imagename}_discord
     rm /data/${imagename}_discord
 }
-
 
 if [ ! -n "${TG_TOKEN}" ]; then
     echo "未配置电报参数或者配置不全，跳过通知！"

@@ -16,10 +16,16 @@ if [[ "$DIUN_ENTRY_HUBLINK111" = *".docker"* ]]; then
 fi
 imagename1="$(echo "$DIUN_ENTRY_IMAGE111" | cut -d / -f3)"
 imagename2="$(echo "$DIUN_ENTRY_IMAGE111" | cut -d / -f2-3)"
+imagename2="$(echo "${imagename2##*:}")"
 imagename3="$(echo "$imagename1" | cut -d : -f1)"
-# 通知标题首字母大写
-imagename3="$(echo ${imagename3:0:1} | tr '[a-z]' '[A-Z]')${imagename3:1}"
 imagename="$(echo "$imagename1" | sed 's/[:][:]*//g')"
+# 通知标题首字母大写
+imagename="$(echo ${imagename:0:1} | tr '[a-z]' '[A-Z]')${imagename:1}"
+imagename1="$(echo ${imagename1:0:1} | tr '[a-z]' '[A-Z]')${imagename1:1}"
+imagename2="$(echo ${imagename2:0:1} | tr '[a-z]' '[A-Z]')${imagename2:1}"
+imagename3="$(echo ${imagename3:0:1} | tr '[a-z]' '[A-Z]')${imagename3:1}"
+DIUN_ENTRY_PLATFORM111="$(echo ${DIUN_ENTRY_PLATFORM111:0:1} | tr '[a-z]' '[A-Z]')${DIUN_ENTRY_PLATFORM111:1}"
+
 DIUN_ENTRY_CREATED222="$(echo "$DIUN_ENTRY_CREATED111" | cut -d . -f1)"
 time_end="$(echo "$DIUN_ENTRY_CREATED111" | cut -d \  -f3)"
 
@@ -68,7 +74,7 @@ function qywx()
        "articles":[
            {
                "title": "${imagename3} 更新啦 💬",
-               "description": "镜　　像：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
+               "description": "标　　签：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
                "url": "${DIUN_ENTRY_HUBLINK111}"
             }
        ]
@@ -96,7 +102,7 @@ function qywxurl()
            {
                "title": "${imagename3} 更新啦 💬",
                "picurl": "${MEDIA_ID}",
-               "description": "镜　　像：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
+               "description": "标　　签：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
                "url": "${DIUN_ENTRY_HUBLINK111}"
             }
        ]
@@ -124,8 +130,8 @@ function qywxmediaid()
            {
                "title": "${imagename3} 更新啦 💬",
                "thumb_media_id": "${MEDIA_ID}",
-               "content": "镜　　像：${imagename2}<br/>更新时间：${DIUN_ENTRY_CREATED111}<br/>平　　台：${DIUN_ENTRY_PLATFORM111}\n",
-               "digest": "镜　　像：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
+               "content": "标　　签：${imagename2}<br/>更新时间：${DIUN_ENTRY_CREATED111}<br/>平　　台：${DIUN_ENTRY_PLATFORM111}\n",
+               "digest": "标　　签：${imagename2}\n更新时间：${DIUN_ENTRY_CREATED111}\n平　　台：${DIUN_ENTRY_PLATFORM111}\n",
                "content_source_url": "${DIUN_ENTRY_HUBLINK111}"
             }
        ]
@@ -146,7 +152,7 @@ function telegram()
 {
     "chat_id": "${TG_CHAT_ID}",
     "parse_mode":"Markdown",
-    "text": "*${imagename3} 更新啦 💬*\n\n*镜　　像：* ${imagename2}\n*地　　址：* ${DIUN_ENTRY_HUBLINK111}\n*更新时间：* ${DIUN_ENTRY_CREATED111}\n*平　　台：* ${DIUN_ENTRY_PLATFORM111}\n"
+    "text": "*${imagename3} 更新啦 💬*\n\n*标　　签：* ${imagename2}\n*地　　址：* ${DIUN_ENTRY_HUBLINK111}\n*更新时间：* ${DIUN_ENTRY_CREATED111}\n*平　　台：* ${DIUN_ENTRY_PLATFORM111}\n"
 }
 EOF
     /data/tools/curl --location --request POST ${TG_URL} --header 'Content-Type: application/json' -d @/data/${imagename}_tg

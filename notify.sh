@@ -40,6 +40,10 @@ else
     # echo $DIUN_ENTRY_CREATED  ${imagename2} "cst" $DIUN_ENTRY_CREATED111  >> /data/log.txt
 fi
 
+if [[ -z $DIUN_ENTRY_CREATED111 ]]; then
+    DIUN_ENTRY_CREATED111="未获取到更新时间"
+fi
+
 function bark()
 {   
     BARK_URL="https://api.day.app/push"

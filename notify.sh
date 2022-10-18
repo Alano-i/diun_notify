@@ -47,7 +47,7 @@ function bark()
     cat>/data/${imagename}_bark<<EOF
 {
     "title": "${imagename3} 更新啦 💬",
-    "body": "镜像：${imagename2}\n时间：${DIUN_ENTRY_CREATED111}\n平台：${DIUN_ENTRY_PLATFORM111}\n",
+    "body": "标签：${imagename2}\n时间：${DIUN_ENTRY_CREATED111}\n平台：${DIUN_ENTRY_PLATFORM111}\n",
     "device_key": "${BARK_KEY}",
     "badge": 1,
     "sound": "minuet.caf",
@@ -176,7 +176,7 @@ function discord()
         },
         "fields": [
           {
-            "name": "镜像",
+            "name": "标签",
             "value": "${imagename2}"
           },
           {
